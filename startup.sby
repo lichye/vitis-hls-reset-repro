@@ -1,0 +1,17 @@
+[options]
+mode bmc
+depth 24
+timeout 60
+
+[engines]
+smtbmc bitwuzla
+
+[script]
+read -formal -sv array_madd_top.v array_madd_top_flow_control_loop_delay_pipe.v array_madd_top_mul_32s_32s_32_5_1.v startup_check.sv
+prep -top startup_check
+
+[files]
+startup_check.sv
+array_madd_top.v rtl/array_madd_top.v
+array_madd_top_flow_control_loop_delay_pipe.v rtl/array_madd_top_flow_control_loop_delay_pipe.v
+array_madd_top_mul_32s_32s_32_5_1.v rtl/array_madd_top_mul_32s_32s_32_5_1.v

@@ -1,0 +1,105 @@
+Running scope as unit: run-r1e77b9f98c9447f6952d6417d6771a9f.scope
+mkdir -p build
+cd build && /eda/Xilinx/2025.1/2025.1/Vitis/bin/vitis-run --mode hls --tcl /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/synthesize.tcl
+
+****** vitis-run v2025.1 (64-bit)
+  **** SW Build 6137779 on 2025-05-21-18:10:03
+  **** Start of session at: Fri Oct 23 11:22:24 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/synthesize.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project 
+WARNING: [HLS 200-2182] The 'hls_project' project will not automatically appear within Vitis IDE workspaces and is meant only for TCL batch use.  Please use open_component instead of open_project/open_solution to generate Vitis IDE compatible component files and directory structure.
+Resolution: For help on HLS 200-2182 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-2182.html
+INFO: [HLS 200-10] Creating and opening solution '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project'.
+INFO: [HLS 200-1510] Running: add_files /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/source/array_madd.c 
+INFO: [HLS 200-10] Adding design file '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/source/array_madd.c' to the project
+INFO: [HLS 200-1510] Running: set_top array_madd_top 
+INFO: [HLS 200-1510] Running: open_solution -reset solution 
+INFO: [HLS 200-10] Creating and opening solution '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xc7z020clg484-1 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg484-1'
+INFO: [HLS 200-1510] Running: create_clock -period 4 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.05 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.08 seconds; current allocated memory: 664.910 MB.
+INFO: [HLS 200-10] Analyzing design file '../source/array_madd.c' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.12 seconds. CPU system time: 0.3 seconds. Elapsed time: 0.43 seconds; current allocated memory: 666.719 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 32 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 30 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 20 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 17 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 23 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 28 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details (/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/hls_project/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 214-178] Inlining function 'array_madd' into 'array_madd_top' (../source/array_madd.c:62:0)
+INFO: [HLS 214-376] automatically set the pipeline for Loop< VITIS_LOOP_44_1> at ../source/array_madd.c:44:20 
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.08 seconds. CPU system time: 0.34 seconds. Elapsed time: 6.25 seconds; current allocated memory: 676.406 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 676.406 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 676.469 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0.01 seconds. Elapsed time: 0 seconds; current allocated memory: 676.469 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 696.438 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 687.820 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_madd_top' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_madd_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_44_1'.
+WARNING: [HLS 200-880] The II Violation in module 'array_madd_top' (loop 'VITIS_LOOP_44_1'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation 0 bit ('i1_write_ln44', ../source/array_madd.c:44->../source/array_madd.c:67) of variable 'i', ../source/array_madd.c:44->../source/array_madd.c:67 on local variable 'i1' and 'add' operation 10 bit ('i', ../source/array_madd.c:44->../source/array_madd.c:67).
+Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 2, Depth = 12, loop 'VITIS_LOOP_44_1'
+WARNING: [HLS 200-871] Estimated clock period (3.950 ns) exceeds the target (target clock period: 4.000 ns, clock uncertainty: 1.080 ns, effective delay budget: 2.920 ns).
+Resolution: For help on HLS 200-871 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-871.html
+WARNING: [HLS 200-1016] The critical path in module 'array_madd_top' consists of the following:
+	'mul' operation 32 bit ('mul_ln45', ../source/array_madd.c:45->../source/array_madd.c:67) [26]  (3.950 ns)
+
+Resolution: For help on HLS 200-1016 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1016.html
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.04 seconds; current allocated memory: 687.820 MB.
+INFO: [#UNDEF] Rewind delay = 11 for the pipelined loop 'VITIS_LOOP_44_1' to synchronize the reading and writing of port 'a' with ap_ready.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 687.820 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_madd_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_madd_top/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_madd_top/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_madd_top/c' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_madd_top' to 'ap_ctrl_hs'.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'array_madd_top' pipeline 'VITIS_LOOP_44_1' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Generating core module 'mul_32s_32s_32_5_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_madd_top'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 687.820 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 689.488 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.1 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.14 seconds; current allocated memory: 690.594 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_madd_top.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_madd_top.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 253.16 MHz
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:00:07; Allocated memory: 25.684 MB.
+INFO: [HLS 200-112] Total CPU user time: 2.84 seconds. Total CPU system time: 1.37 seconds. Total elapsed time: 8.96 seconds; peak allocated memory: 696.438 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 0m 9s
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.

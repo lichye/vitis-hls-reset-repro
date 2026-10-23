@@ -1,0 +1,11 @@
+mkdir -p build/replay/iverilog
+iverilog -g2012 -Wall -s tb_startup -o build/replay/iverilog/sim.vvp tb_startup.sv rtl/array_madd_top.v rtl/array_madd_top_flow_control_loop_delay_pipe.v rtl/array_madd_top_mul_32s_32s_32_5_1.v
+mkdir -p build/replay/iverilog/seed1 build/replay/iverilog/seed0
+cd build/replay/iverilog/seed1 && vvp ../sim.vvp +seed=1
+VCD info: dumpfile startup.vcd opened for output.
+BUG REPRODUCED: cycles=1 ap_done=1 writes=0 a[0]=0 expected=5
+tb_startup.sv:88: $finish called at 36000 (1ps)
+cd build/replay/iverilog/seed0 && vvp ../sim.vvp +seed=0
+VCD info: dumpfile startup.vcd opened for output.
+ZERO-SEED CONTROL PASS: cycles=2057 writes=1024 all A[k]=5
+tb_startup.sv:96: $finish called at 20596000 (1ps)

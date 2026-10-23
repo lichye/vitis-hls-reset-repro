@@ -1,0 +1,71 @@
+mkdir -p build/replay/xsim
+cd build/replay/xsim && xvlog --sv /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top.v /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top_flow_control_loop_delay_pipe.v /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top_mul_32s_32s_32_5_1.v /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/tb_startup.sv
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top.v" into library work
+INFO: [VRFC 10-311] analyzing module array_madd_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top_flow_control_loop_delay_pipe.v" into library work
+INFO: [VRFC 10-311] analyzing module array_madd_top_flow_control_loop_delay_pipe
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top_mul_32s_32s_32_5_1.v" into library work
+INFO: [VRFC 10-311] analyzing module array_madd_top_mul_32s_32s_32_5_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/tb_startup.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_startup
+cd build/replay/xsim && xelab work.tb_startup --snapshot tb_startup_snapshot --debug typical --mt 2
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /eda/Xilinx/2025.1/2025.1/Vivado/bin/unwrapped/lnx64.o/xelab work.tb_startup --snapshot tb_startup_snapshot --debug typical --mt 2 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.array_madd_top_mul_32s_32s_32_5_...
+Compiling module work.array_madd_top_flow_control_loop...
+Compiling module work.array_madd_top
+Compiling module work.tb_startup
+Built simulation snapshot tb_startup_snapshot
+touch build/replay/xsim/.elaborated
+rm -f build/replay/xsim/seed1.log build/replay/xsim/seed0.log build/replay/xsim/startup.vcd
+cd build/replay/xsim && xsim tb_startup_snapshot --runall --onfinish quit --onerror quit --testplusarg seed=1 --log seed1.log --wdb seed1.wdb
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Fri Oct 23 11:22:25 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_startup_snapshot/xsim_script.tcl
+# xsim {tb_startup_snapshot} -testplusarg seed=1 -wdb {seed1.wdb} -autoloadwcfg -runall -onfinish quit -onerror quit
+Time resolution is 1 ps
+run -all
+BUG REPRODUCED: cycles=1 ap_done=1 writes=0 a[0]=0 expected=5
+$finish called at time : 36 ns : File "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/tb_startup.sv" Line 88
+exit 0
+INFO: xsimkernel Simulation Memory Usage: 473316 KB (Peak: 530588 KB), Simulation CPU Usage: 580 ms
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 11:22:27 2026...
+grep -Fq 'BUG REPRODUCED:' build/replay/xsim/seed1.log
+mv build/replay/xsim/startup.vcd build/replay/xsim/seed1.vcd
+cd build/replay/xsim && xsim tb_startup_snapshot --runall --onfinish quit --onerror quit --testplusarg seed=0 --log seed0.log --wdb seed0.wdb
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Fri Oct 23 11:22:28 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_startup_snapshot/xsim_script.tcl
+# xsim {tb_startup_snapshot} -testplusarg seed=0 -wdb {seed0.wdb} -autoloadwcfg -runall -onfinish quit -onerror quit
+Time resolution is 1 ps
+run -all
+ZERO-SEED CONTROL PASS: cycles=2057 writes=1024 all A[k]=5
+$finish called at time : 20596 ns : File "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/tb_startup.sv" Line 96
+exit 0
+INFO: xsimkernel Simulation Memory Usage: 473316 KB (Peak: 530588 KB), Simulation CPU Usage: 640 ms
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 11:22:29 2026...
+grep -Fq 'ZERO-SEED CONTROL PASS:' build/replay/xsim/seed0.log
+mv build/replay/xsim/startup.vcd build/replay/xsim/seed0.vcd

@@ -1,0 +1,396 @@
+$date
+   Fri Oct 23 11:22:27 2026
+$end
+
+$version
+  2025.1.0
+  $dumpfile ("startup.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_startup $end
+$var reg 1 ! ap_clk $end
+$var reg 1 " ap_rst $end
+$var reg 1 # ap_start $end
+$var wire 1 $ ap_done $end
+$var wire 1 % ap_ready $end
+$var wire 1 & ap_idle $end
+$var wire 10 ' a_address0 [9:0] $end
+$var wire 10 ( a_address1 [9:0] $end
+$var wire 10 ) b_address0 [9:0] $end
+$var wire 10 * c_address0 [9:0] $end
+$var wire 1 + a_ce0 $end
+$var wire 1 , a_we0 $end
+$var wire 1 - a_ce1 $end
+$var wire 1 . b_ce0 $end
+$var wire 1 / c_ce0 $end
+$var wire 32 0 a_d0 [31:0] $end
+$var reg 32 1 a_q1 [31:0] $end
+$var reg 32 2 a_read_stage [31:0] $end
+$var reg 1 3 a_read_pending $end
+$var reg 32 4 b_q0 [31:0] $end
+$var reg 32 5 c_q0 [31:0] $end
+$var integer 32 6 writes [31:0] $end
+$var integer 32 7 cycles [31:0] $end
+$var integer 32 8 k [31:0] $end
+$var integer 32 9 seed [31:0] $end
+$scope module dut $end
+$var wire 1 : ap_clk $end
+$var wire 1 ; ap_rst $end
+$var wire 1 < ap_start $end
+$var wire 1 $ ap_done $end
+$var wire 1 % ap_ready $end
+$var wire 10 ' a_address0 [9:0] $end
+$var wire 1 + a_ce0 $end
+$var wire 1 , a_we0 $end
+$var wire 32 0 a_d0 [31:0] $end
+$var wire 10 ( a_address1 [9:0] $end
+$var wire 1 - a_ce1 $end
+$var wire 32 = a_q1 [31:0] $end
+$var wire 10 ) b_address0 [9:0] $end
+$var wire 1 . b_ce0 $end
+$var wire 32 > b_q0 [31:0] $end
+$var wire 10 * c_address0 [9:0] $end
+$var wire 1 / c_ce0 $end
+$var wire 32 ? c_q0 [31:0] $end
+$var reg 1 @ ap_idle $end
+$var reg 2 A ap_CS_fsm [1:0] $end
+$var wire 1 B ap_CS_fsm_pp0_stage0 $end
+$var reg 1 C ap_enable_reg_pp0_iter0 $end
+$var reg 1 D ap_enable_reg_pp0_iter1 $end
+$var reg 1 E ap_enable_reg_pp0_iter2 $end
+$var reg 1 F ap_enable_reg_pp0_iter3 $end
+$var reg 1 G ap_enable_reg_pp0_iter4 $end
+$var reg 1 H ap_enable_reg_pp0_iter5 $end
+$var reg 1 I ap_idle_pp0 $end
+$var wire 1 J ap_CS_fsm_pp0_stage1 $end
+$var wire 1 K ap_block_pp0_stage1_subdone $end
+$var reg 1 L ap_enable_reg_pp0_iter0_reg $end
+$var wire 1 M icmp_ln44_fu_114_p2 [0:0] $end
+$var reg 1 N ap_condition_exit_pp0_iter0_stage1 $end
+$var wire 1 O ap_loop_exit_ready $end
+$var reg 1 P ap_ready_int $end
+$var reg 1 Q ap_condition_exit_pp0_iter0_stage1_pp0_iter1_reg $end
+$var wire 1 R ap_block_pp0_stage1_11001 $end
+$var reg 1 S ap_condition_exit_pp0_iter0_stage1_pp0_iter2_reg $end
+$var reg 1 T ap_condition_exit_pp0_iter0_stage1_pp0_iter3_reg $end
+$var reg 1 U ap_condition_exit_pp0_iter0_stage1_pp0_iter4_reg $end
+$var reg 1 V ap_condition_exit_pp0_iter0_stage1_pp0_iter5_reg $end
+$var reg 1 W ap_loop_exit_ready_delayed $end
+$var reg 10 X a_addr_reg_149 [9:0] $end
+$var reg 10 Y a_addr_reg_149_pp0_iter1_reg [9:0] $end
+$var reg 10 Z a_addr_reg_149_pp0_iter2_reg [9:0] $end
+$var reg 10 [ a_addr_reg_149_pp0_iter3_reg [9:0] $end
+$var reg 10 \ a_addr_reg_149_pp0_iter4_reg [9:0] $end
+$var wire 10 ] i_fu_108_p2 [9:0] $end
+$var reg 10 ^ i_reg_155 [9:0] $end
+$var reg 32 _ b_load_reg_164 [31:0] $end
+$var wire 1 ` ap_block_pp0_stage0_11001 $end
+$var reg 32 a c_load_reg_170 [31:0] $end
+$var reg 32 b a_load_reg_176 [31:0] $end
+$var reg 32 c a_load_reg_176_pp0_iter2_reg [31:0] $end
+$var reg 32 d a_load_reg_176_pp0_iter3_reg [31:0] $end
+$var reg 32 e a_load_reg_176_pp0_iter4_reg [31:0] $end
+$var wire 32 f grp_fu_89_p2 [31:0] $end
+$var reg 32 g mul_ln45_reg_181 [31:0] $end
+$var reg 32 h mul_ln45_1_reg_186 [31:0] $end
+$var wire 32 i add_ln45_fu_124_p2 [31:0] $end
+$var reg 32 j add_ln45_reg_191 [31:0] $end
+$var wire 32 k add_ln45_1_fu_128_p2 [31:0] $end
+$var reg 32 l add_ln45_1_reg_196 [31:0] $end
+$var wire 64 m zext_ln44_fu_101_p1 [63:0] $end
+$var wire 1 n ap_block_pp0_stage1 $end
+$var reg 10 o i1_fu_42 [9:0] $end
+$var wire 1 p ap_loop_init $end
+$var reg 1 q b_ce0_local $end
+$var reg 1 r c_ce0_local $end
+$var reg 1 s a_ce1_local $end
+$var reg 1 t a_we0_local $end
+$var reg 1 u a_ce0_local $end
+$var reg 32 v grp_fu_89_p0 [31:0] $end
+$var reg 32 w grp_fu_89_p1 [31:0] $end
+$var wire 1 x ap_block_pp0_stage0 $end
+$var reg 1 y ap_done_reg $end
+$var wire 1 z ap_continue_int $end
+$var reg 1 { ap_done_int $end
+$var reg 1 | ap_loop_exit_ready_pp0_iter1_reg $end
+$var reg 1 } ap_loop_exit_ready_pp0_iter2_reg $end
+$var reg 1 ~ ap_loop_exit_ready_pp0_iter3_reg $end
+$var reg 1 !! ap_loop_exit_ready_pp0_iter4_reg $end
+$var reg 1 "! ap_loop_exit_ready_pp0_iter5_reg $end
+$var reg 2 #! ap_NS_fsm [1:0] $end
+$var wire 1 $! ap_block_pp0_stage0_subdone $end
+$var reg 1 %! ap_idle_pp0_1to5 $end
+$var wire 1 &! ap_enable_pp0 $end
+$var wire 1 '! ap_start_int $end
+$var wire 1 (! ap_ready_sig $end
+$var wire 1 )! ap_done_sig $end
+$var wire 1 *! ap_ce_reg $end
+$scope module mul_32s_32s_32_5_1_U1 $end
+$var wire 1 : clk $end
+$var wire 1 +! ce $end
+$var wire 1 ; reset $end
+$var wire 32 ,! din0 [31:0] $end
+$var wire 32 -! din1 [31:0] $end
+$var wire 32 f dout [31:0] $end
+$var wire 32 .! tmp_product [31:0] $end
+$var reg 32 /! buff0 [31:0] $end
+$var reg 32 0! din0_reg [31:0] $end
+$var reg 32 1! din1_reg [31:0] $end
+$var reg 32 2! buff1 [31:0] $end
+$var reg 32 3! buff2 [31:0] $end
+$upscope $end
+$scope module flow_control_loop_delay_pipe_U $end
+$var wire 1 : ap_clk $end
+$var wire 1 ; ap_rst $end
+$var wire 1 < ap_start $end
+$var wire 1 (! ap_ready $end
+$var wire 1 )! ap_done $end
+$var wire 1 4! ap_continue $end
+$var reg 1 5! ap_start_int $end
+$var wire 1 6! ap_ready_int $end
+$var wire 1 7! ap_done_int $end
+$var wire 1 z ap_continue_int $end
+$var reg 1 8! ap_loop_init $end
+$var wire 1 9! ap_loop_exit_ready $end
+$var wire 1 :! ap_loop_exit_ready_delayed $end
+$var wire 1 ;! ap_loop_exit_done $end
+$var reg 1 <! rewind_ap_ready_reg $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+x!!
+1"
+x"!
+0#
+b1 #!
+0$
+0$!
+0%
+1%!
+1&
+0&!
+bx '
+0'!
+b0 (
+0(!
+b0 )
+0)!
+b0 *
+z*!
+0+
+1+!
+0,
+bx ,!
+0-
+bx -!
+0.
+bx .!
+0/
+bx /!
+bx 0
+bx 0!
+b0 1
+bx 1!
+b0 2
+bx 2!
+03
+bx 3!
+b1 4
+14!
+b10 5
+05!
+b0 6
+06!
+b0 7
+07!
+b10000000000 8
+18!
+b1 9
+09!
+0:
+0:!
+1;
+0;!
+0<
+0<!
+b0 =
+b1 >
+b10 ?
+1@
+b1 A
+1B
+0C
+0D
+0E
+0F
+0G
+0H
+1I
+0J
+0K
+0L
+0M
+0N
+0O
+0P
+xQ
+0R
+xS
+xT
+xU
+xV
+0W
+bx X
+bx Y
+bx Z
+bx [
+bx \
+b1 ]
+bx ^
+bx _
+0`
+bx a
+bx b
+bx c
+bx d
+bx e
+bx f
+bx g
+bx h
+bx i
+bx j
+bx k
+bx l
+b0 m
+0n
+b0 o
+1p
+0q
+0r
+0s
+0t
+0u
+bx v
+bx w
+0x
+0y
+1z
+0{
+x|
+x}
+x~
+$end
+
+#1000
+0!!
+1"!
+0Q
+0S
+0T
+0U
+1V
+0|
+0}
+0~
+
+#5000
+1!
+1:
+b1 _
+b10 a
+
+#10000
+0!
+0:
+
+#15000
+1!
+1:
+
+#20000
+0!
+0"
+1#
+b10 #!
+0&
+1&!
+1'!
+15!
+0:
+0;
+1<
+0@
+1C
+0I
+
+#25000
+1!
+b1 #!
+1$
+1%
+1(!
+1)!
+1-
+1.
+1/
+16!
+17!
+1:
+1:!
+1;!
+b10 A
+0B
+1J
+1L
+1P
+1W
+1q
+1r
+1s
+1{
+
+#30000
+0!
+b1 7
+0:
+
+#35000
+1!
+0"!
+b10 #!
+0$
+0%
+0%!
+0(!
+0)!
+0.
+0/
+13
+06!
+07!
+08!
+1:
+0:!
+0;!
+b1 A
+1B
+1D
+0J
+0P
+0V
+0W
+b0 X
+b1 ^
+0p
+0q
+0r
+0{

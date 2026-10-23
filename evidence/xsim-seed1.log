@@ -1,0 +1,32 @@
+#-----------------------------------------------------------
+# xsim v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Fri Oct 23 11:22:25 2026
+# Process ID         : 1298855
+# Current directory  : /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/xsim
+# Command line       : xsim -log seed1.log -mode tcl -source {xsim.dir/tb_startup_snapshot/xsim_script.tcl}
+# Log file           : /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/xsim/seed1.log
+# Journal file       : /home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/xsim/xsim.jou
+# Running On         : dhcp-91-091.inf.ed.ac.uk
+# Platform           : unknown
+# Operating System   : unknown
+# Processor Detail   : AMD Ryzen Threadripper 7970X 32-Cores
+# CPU Frequency      : 545.000 MHz
+# CPU Physical cores : 32
+# CPU Logical cores  : 64
+# Host memory        : 269189 MB
+# Swap memory        : 141733 MB
+# Total Virtual      : 410923 MB
+# Available Virtual  : 341080 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_startup_snapshot/xsim_script.tcl
+# xsim {tb_startup_snapshot} -testplusarg seed=1 -wdb {seed1.wdb} -autoloadwcfg -runall -onfinish quit -onerror quit
+Time resolution is 1 ps
+run -all
+BUG REPRODUCED: cycles=1 ap_done=1 writes=0 a[0]=0 expected=5
+$finish called at time : 36 ns : File "/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/tb_startup.sv" Line 88
+exit 0
+INFO: xsimkernel Simulation Memory Usage: 473316 KB (Peak: 530588 KB), Simulation CPU Usage: 580 ms
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 11:22:27 2026...

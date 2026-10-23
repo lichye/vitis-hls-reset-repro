@@ -1,0 +1,6 @@
+Replay date (UTC): 2026-10-23
+iverilog -V: Icarus Verilog version 14.0 (devel) (s20251012-146-g41d07c3e6)
+yosys -V: Yosys 0.63+222 (git sha1 a4b6a8c58, clang++ 18.1.8 -fPIC -O3)
+sby --version: SBY v0.63-11-g6424d15
+bitwuzla --version: 1.0-prerelease
+AMD Vivado Simulator (XSim): 2025.1, SW Build 6140274

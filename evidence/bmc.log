@@ -1,0 +1,41 @@
+sby -f -d build/replay/bmc startup.sby
+SBY 10:55:29 [build/replay/bmc] Removing directory '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/bmc'.
+SBY 10:55:29 [build/replay/bmc] Copy '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/startup_check.sv' to '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/bmc/src/startup_check.sv'.
+SBY 10:55:29 [build/replay/bmc] Copy '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top.v' to '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/bmc/src/array_madd_top.v'.
+SBY 10:55:29 [build/replay/bmc] Copy '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top_flow_control_loop_delay_pipe.v' to '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/bmc/src/array_madd_top_flow_control_loop_delay_pipe.v'.
+SBY 10:55:29 [build/replay/bmc] Copy '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/rtl/array_madd_top_mul_32s_32s_32_5_1.v' to '/home/magna/Projects/research/formal-hls/vitis-hls-reset-repro/build/replay/bmc/src/array_madd_top_mul_32s_32s_32_5_1.v'.
+SBY 10:55:29 [build/replay/bmc] engine_0: smtbmc bitwuzla
+SBY 10:55:29 [build/replay/bmc] base: starting process "cd build/replay/bmc/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY 10:55:29 [build/replay/bmc] base: finished (returncode=0)
+SBY 10:55:29 [build/replay/bmc] prep: starting process "cd build/replay/bmc/model; yosys -ql design_prep.log design_prep.ys"
+SBY 10:55:29 [build/replay/bmc] prep: finished (returncode=0)
+SBY 10:55:29 [build/replay/bmc] smt2: starting process "cd build/replay/bmc/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY 10:55:29 [build/replay/bmc] smt2: finished (returncode=0)
+SBY 10:55:29 [build/replay/bmc] engine_0: starting process "cd build/replay/bmc; yosys-smtbmc -s bitwuzla --presat --unroll --noprogress -t 24  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Solver: bitwuzla
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assumptions in step 0..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assertions in step 0..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assumptions in step 1..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assertions in step 1..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assumptions in step 2..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assertions in step 2..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assumptions in step 3..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assertions in step 3..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assumptions in step 4..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Checking assertions in step 4..
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  BMC failed!
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Assert failed in startup_check: done_after_write
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace.yw
+SBY 10:55:29 [build/replay/bmc] engine_0: ##   0:00:00  Status: failed
+SBY 10:55:29 [build/replay/bmc] engine_0: finished (returncode=1)
+SBY 10:55:29 [build/replay/bmc] engine_0: Status returned by engine: FAIL
+SBY 10:55:29 [build/replay/bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 10:55:29 [build/replay/bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 10:55:29 [build/replay/bmc] summary: engine_0 (smtbmc bitwuzla) returned FAIL
+SBY 10:55:29 [build/replay/bmc] summary: counterexample trace: build/replay/bmc/engine_0/trace.vcd
+SBY 10:55:29 [build/replay/bmc] summary:   failed assertion startup_check.done_after_write at startup_check.sv:26.22-26.70 step 4
+SBY 10:55:29 [build/replay/bmc] DONE (FAIL, rc=2)
+make: *** [Makefile:22: bmc] Error 2
