@@ -9,10 +9,16 @@ VVP ?= vvp
 SBY ?= sby
 VITIS ?= vitis-run
 
-.PHONY: test test-iverilog bmc hls clean
+.PHONY: test test-bug test-ok test-iverilog bmc hls clean
 
-test: $(BUILD)/xsim/.elaborated
+test: test-bug test-ok
+
+# Exit registers power up at 1: premature ap_done at cycle 1, array untouched.
+test-bug: $(BUILD)/xsim/.elaborated
 	cd $(BUILD)/xsim && $(XSIM) tb_startup_snapshot --runall --onfinish quit --onerror quit --testplusarg seed=1 --log seed1.log --wdb seed1.wdb
+
+# Exit registers power up at 0: normal completion at cycle 2057, all A[k]=5.
+test-ok: $(BUILD)/xsim/.elaborated
 	cd $(BUILD)/xsim && $(XSIM) tb_startup_snapshot --runall --onfinish quit --onerror quit --testplusarg seed=0 --log seed0.log --wdb seed0.wdb
 
 $(BUILD)/xsim/.elaborated: tb_startup.sv $(RTL) Makefile

@@ -16,24 +16,30 @@ and `xsim` on `PATH`, then clone the repository and run:
 git clone https://github.com/lichye/vitis-hls-reset-repro.git
 cd vitis-hls-reset-repro
 command -v xvlog xelab xsim
-make test
+make test-bug
+make test-ok
 ```
 
-Expected output includes:
+Expected output of `make test-bug` (the two unreset exit registers power
+up at 1):
 
 ```text
 ap_done at cycle 1
 a[0..7] = 0 0 0 0 0 0 0 0
+```
+
+Expected output of `make test-ok` (the same registers power up at 0):
+
+```text
 ap_done at cycle 2057
 a[0..7] = 5 5 5 5 5 5 5 5
 ```
 
-`make test` runs the testbench twice. With seed 1 the two unreset exit
-registers start at 1: `ap_done` comes at cycle 1 and the array still holds 0.
-With seed 0 they start at 0: `ap_done` comes at cycle 2057 with every element
-at 5. Cycles are counted after reset release. Each run's log, VCD waveform,
-and XSim waveform database are written to `build/replay/xsim/seed1.{log,vcd,wdb}`
-or `build/replay/xsim/seed0.{log,vcd,wdb}`.
+Everything else is identical between the two runs: same RTL, same reset
+sequence, same start handshake. `make test` runs both. Cycles are counted
+after reset release. Each run's log, VCD waveform, and XSim waveform database
+are written to `build/replay/xsim/seed1.{log,vcd,wdb}` or
+`build/replay/xsim/seed0.{log,vcd,wdb}`.
 
 The target compiles and runs this repository's testbench directly against the
 unmodified HLS-generated RTL. The
