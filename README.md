@@ -71,7 +71,7 @@ The counterexample contains no array write, including on the completion edge.
 The formal harness never assigns internal DUT registers; the solver chooses
 their unspecified initial values while preserving explicit RTL initializations.
 
-## Example and synthesis settings
+## Example and HLS settings
 
 The [source](source/array_madd.c) computes, for `N = 1024`:
 
@@ -95,7 +95,7 @@ overflow. Every `A[k]` should equal `5` at completion.
 | Reset configuration | Default; no `config_rtl` override |
 | Loop pipeline | Automatic; achieved II = 2, depth = 12 |
 
-The synthesis script uses the source, top function, part, and clock settings
+The HLS script uses the source, top function, part, and clock settings
 above, with no additional optimization directives.
 
 ## Reset sequence and cause
@@ -128,25 +128,25 @@ qualified by the pipeline-valid state.
 To regenerate the RTL and rerun the XSim simulation, put these executables on
 `PATH`:
 
-- Vitis HLS 2025.1's `vitis-run`, used by `make synth`.
+- Vitis HLS 2025.1's `vitis-run`, used by `make hls`.
 - Vivado Simulator 2025.1's `xvlog`, `xelab`, and `xsim`, used by `make test`.
 
 ```sh
 command -v vitis-run xvlog xelab xsim
-make synth
+make hls
 make test RTL_DIR=build/hls_project/solution/syn/verilog BUILD=build/replay-fresh
 ```
 
-`make synth` recreates `build/hls_project/` and retains the supplied `rtl/`
+`make hls` recreates `build/hls_project/` and retains the supplied `rtl/`
 snapshot. Tool executable paths can be overridden, for example
-`make synth VITIS=/path/to/vitis-run`. The simulator executables can be
+`make hls VITIS=/path/to/vitis-run`. The simulator executables can be
 overridden with `XVLOG`, `XELAB`, and `XSIM` in the same way.
 
 On 23 October 2026, this command regenerated all three Verilog modules
 byte-for-byte identically to the supplied snapshot, and the fresh RTL reproduced
 both simulation results above.
 
-To remove generated synthesis, simulation, and solver output under `build/`:
+To remove generated HLS, simulation, and solver output under `build/`:
 
 ```sh
 make clean
@@ -159,7 +159,7 @@ The source, supplied RTL snapshot, and recorded files in `evidence/` are retaine
 | Path | Purpose |
 | --- | --- |
 | `source/array_madd.c` | Original C source and ACSL annotations |
-| `synthesize.tcl` | Standalone HLS synthesis script |
+| `synthesize.tcl` | Standalone Vitis HLS script |
 | `rtl/` | Three unmodified HLS-generated Verilog modules |
 | `tb_startup.sv` | Concrete failing simulation and zero-seed control |
 | `startup_check.sv`, `startup.sby` | Independent startup assertion and BMC task |

@@ -9,7 +9,7 @@ VVP ?= vvp
 SBY ?= sby
 VITIS ?= vitis-run
 
-.PHONY: test test-iverilog bmc synth clean
+.PHONY: test test-iverilog bmc hls clean
 
 test: $(BUILD)/xsim/.elaborated
 	rm -f $(BUILD)/xsim/seed1.log $(BUILD)/xsim/seed0.log $(BUILD)/xsim/startup.vcd
@@ -39,7 +39,7 @@ $(BUILD)/iverilog/sim.vvp: tb_startup.sv $(RTL)
 bmc:
 	$(SBY) -f -d $(BUILD)/bmc startup.sby
 
-synth:
+hls:
 	mkdir -p build
 	cd build && $(VITIS) --mode hls --tcl $(abspath synthesize.tcl)
 
