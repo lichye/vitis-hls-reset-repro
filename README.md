@@ -134,17 +134,15 @@ To regenerate the RTL and rerun the XSim simulation, put these executables on
 ```sh
 command -v vitis-run xvlog xelab xsim
 make hls
-make test RTL_DIR=build/hls_project/solution/syn/verilog BUILD=build/replay-fresh
+make test
 ```
 
-`make hls` recreates `build/hls_project/` and retains the supplied `rtl/`
-snapshot. Tool executable paths can be overridden, for example
-`make hls VITIS=/path/to/vitis-run`. The simulator executables can be
+`make hls` runs Vitis HLS under `build/hls_project/` and copies the generated
+Verilog into `rtl/`, which `make test` and `make bmc` use. Synthesis is
+deterministic here: `git diff rtl/` after `make hls` shows no change against
+the committed files. Tool executable paths can be overridden, for example
+`make hls VITIS=/path/to/vitis-run`; the simulator executables can be
 overridden with `XVLOG`, `XELAB`, and `XSIM` in the same way.
-
-On 23 October 2026, this command regenerated all three Verilog modules
-byte-for-byte identically to the supplied snapshot, and the fresh RTL reproduced
-both simulation results above.
 
 To remove generated HLS, simulation, and solver output under `build/`:
 
@@ -160,7 +158,7 @@ The source, supplied RTL snapshot, and recorded files in `evidence/` are retaine
 | --- | --- |
 | `source/array_madd.c` | Original C source and ACSL annotations |
 | `synthesize.tcl` | Standalone Vitis HLS script |
-| `rtl/` | Three unmodified HLS-generated Verilog modules |
+| `rtl/` | Three HLS-generated Verilog modules; regenerate with `make hls` |
 | `tb_startup.sv` | Concrete failing simulation and zero-seed control |
 | `startup_check.sv`, `startup.sby` | Independent startup assertion and BMC task |
 | `evidence/` | Synthesis reports, replay logs, hashes, and failing waveforms |

@@ -42,6 +42,8 @@ bmc:
 hls:
 	mkdir -p build
 	cd build && $(VITIS) --mode hls --tcl $(abspath synthesize.tcl)
+	mkdir -p rtl
+	cp build/hls_project/solution/syn/verilog/*.v rtl/
 
 clean:
 	rm -rf -- build
