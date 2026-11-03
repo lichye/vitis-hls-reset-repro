@@ -22,15 +22,18 @@ make test
 Expected output includes:
 
 ```text
-BUG REPRODUCED: cycles=1 ap_done=1 writes=0 a[0]=0 expected=5
-ZERO-SEED CONTROL PASS: cycles=2057 writes=1024 all A[k]=5
+ap_done at cycle 1
+a[0..7] = 0 0 0 0 0 0 0 0
+ap_done at cycle 2057
+a[0..7] = 5 5 5 5 5 5 5 5
 ```
 
-`make test` succeeds only when both the premature-completion case and the
-zero-seed control behave as expected. Counts are measured by the testbench after
-reset release. Each run's log, VCD waveform, and XSim waveform database are
-written to `build/replay/xsim/seed1.{log,vcd,wdb}` or
-`build/replay/xsim/seed0.{log,vcd,wdb}`.
+`make test` runs the testbench twice. With seed 1 the two unreset exit
+registers start at 1: `ap_done` comes at cycle 1 and the array still holds 0.
+With seed 0 they start at 0: `ap_done` comes at cycle 2057 with every element
+at 5. Cycles are counted after reset release. Each run's log, VCD waveform,
+and XSim waveform database are written to `build/replay/xsim/seed1.{log,vcd,wdb}`
+or `build/replay/xsim/seed0.{log,vcd,wdb}`.
 
 The target compiles and runs this repository's testbench directly against the
 unmodified HLS-generated RTL. The
@@ -48,7 +51,7 @@ requires both `iverilog` and `vvp` on `PATH`:
 make test-iverilog
 ```
 
-It produces the same two expected messages and writes waveforms under
+It prints the same results and writes waveforms under
 `build/replay/iverilog/seed1/` and `build/replay/iverilog/seed0/`.
 
 ### Bounded model checking

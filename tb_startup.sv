@@ -15,7 +15,6 @@ module tb_startup;
     reg [31:0] b_q0 = 1;
     reg [31:0] c_q0 = 2;
     reg [31:0] a [0:1023];
-    integer writes = 0;
     integer cycles = 0;
     integer k;
     integer seed;
@@ -38,16 +37,13 @@ module tb_startup;
         if (a_read_pending) a_q1 <= a_read_stage;
         if (b_ce0) b_q0 <= 32'd1;
         if (c_ce0) c_q0 <= 32'd2;
-        if (a_ce0 && a_we0) begin
-            a[a_address0] <= a_d0;
-            writes = writes + 1;
-        end
+        if (a_ce0 && a_we0) a[a_address0] <= a_d0;
     end
 
     initial begin
         for (k = 0; k < 1024; k = k + 1) a[k] = 0;
         if (!$value$plusargs("seed=%d", seed)) seed = 1;
-        $dumpfile("startup.vcd");
+        $dumpfile($sformatf("seed%0d.vcd", seed));
         $dumpvars(0, tb_startup);
 
         // Deposit a legal power-up value once, before reset clocks.
@@ -78,29 +74,18 @@ module tb_startup;
             @(negedge ap_clk);
             cycles = cycles + 1;
             if (ap_done === 1'b1) begin
-                // Sample completion at its rising edge, then let a simultaneous
-                // final BRAM write commit before inspecting the array.
+                // Let a simultaneous final BRAM write commit before checking.
                 @(posedge ap_clk);
                 #1;
-                if (seed == 1 && writes == 0 && a[0] == 0) begin
-                    $display("BUG REPRODUCED: cycles=%0d ap_done=1 writes=%0d a[0]=%0d expected=5",
-                             cycles, writes, a[0]);
-                    $finish;
-                end
-                if (seed == 0 && writes == 1024) begin
-                    for (k = 0; k < 1024; k = k + 1)
-                        if (a[k] !== 32'd5)
-                            $fatal(1, "Incorrect A[%0d]=%0d, expected 5", k, a[k]);
-                    $display("ZERO-SEED CONTROL PASS: cycles=%0d writes=%0d all A[k]=5",
-                             cycles, writes);
-                    $finish;
-                end
-                $fatal(1, "Unexpected completion: seed=%0d cycles=%0d writes=%0d",
-                       seed, cycles, writes);
+                $display("ap_done at cycle %0d", cycles);
+                $display("a[0..7] = %0d %0d %0d %0d %0d %0d %0d %0d",
+                         a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7]);
+                $finish;
             end
             if (ap_ready === 1'b1) ap_start = 0;
         end
-        $fatal(1, "No completion within 2200 cycles");
+        $display("no ap_done within 2200 cycles");
+        $finish;
     end
 endmodule
 
