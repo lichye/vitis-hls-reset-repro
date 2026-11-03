@@ -53,18 +53,18 @@ module tb_startup;
         dut.grp_array_madd_fu_24.ap_loop_exit_ready_pp0_iter1_reg = 0;
         dut.grp_array_madd_fu_24.ap_loop_exit_ready_pp0_iter2_reg = 0;
         dut.grp_array_madd_fu_24.ap_loop_exit_ready_pp0_iter3_reg = 0;
-        dut.grp_array_madd_fu_24.ap_loop_exit_ready_pp0_iter4_reg = seed[0];
+        dut.grp_array_madd_fu_24.ap_loop_exit_ready_pp0_iter4_reg = seed;
 `else
         dut.ap_loop_exit_ready_pp0_iter1_reg = 0;
         dut.ap_loop_exit_ready_pp0_iter2_reg = 0;
         dut.ap_loop_exit_ready_pp0_iter3_reg = 0;
         dut.ap_loop_exit_ready_pp0_iter4_reg = 0;
-        dut.ap_loop_exit_ready_pp0_iter5_reg = seed[0];
+        dut.ap_loop_exit_ready_pp0_iter5_reg = seed;
         dut.ap_condition_exit_pp0_iter0_stage1_pp0_iter1_reg = 0;
         dut.ap_condition_exit_pp0_iter0_stage1_pp0_iter2_reg = 0;
         dut.ap_condition_exit_pp0_iter0_stage1_pp0_iter3_reg = 0;
         dut.ap_condition_exit_pp0_iter0_stage1_pp0_iter4_reg = 0;
-        dut.ap_condition_exit_pp0_iter0_stage1_pp0_iter5_reg = seed[0];
+        dut.ap_condition_exit_pp0_iter0_stage1_pp0_iter5_reg = seed;
 `endif
 
         repeat (2) @(negedge ap_clk);
