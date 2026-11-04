@@ -156,21 +156,18 @@ overridden with `XVLOG`, `XELAB`, and `XSIM` in the same way.
 ## Workaround: `config_rtl -reset all`
 
 `synthesize_reset_all.tcl` is the same script with one added line,
-`config_rtl -reset all`, which gives every register a reset.
-`make hls-ok` synthesizes it into `rtl-ok/`. Rerunning the failing case
-against that RTL shows the bug is gone — the hostile power-up value is
-cleared by reset and the kernel completes normally:
+`config_rtl -reset all`, which gives every register a reset. `make hls-ok`
+synthesizes it and replaces `rtl/` in place; the testbench and the formal
+check always read `rtl/`.
 
 ```sh
-make hls-ok
-make test-bug RTL_DIR=rtl-ok BUILD=build/replay-ok
+make hls-ok   # resynthesize with reset all, replaces rtl/
+make test-bug # ap_done at cycle 2057, a[0..7] all 5: the bug is gone
+make bmc      # PASS, rc=0: no bad power-up state exists within the bound
+make hls      # back to the default RTL; git diff rtl/ is clean again
 ```
 
-```text
-ap_done at cycle 2057
-a[0..7] = 5 5 5 5 5 5 5 5
-```
-
+`git diff rtl/` right after `make hls-ok` shows exactly what the option adds.
 The cost is that the datapath now resets too, adding area and reset fanout.
 
 To remove generated HLS, simulation, and solver output under `build/`:

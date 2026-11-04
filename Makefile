@@ -46,13 +46,13 @@ hls:
 	mkdir -p rtl
 	cp build/hls_project/solution/syn/verilog/*.v rtl/
 
-# Same synthesis with config_rtl -reset all; RTL goes to rtl-ok/.
-# Then: make test-bug RTL_DIR=rtl-ok BUILD=build/replay-ok
+# Same synthesis with config_rtl -reset all, replacing rtl/ in place.
+# make test-bug then completes normally; make hls restores the default RTL.
 hls-ok:
 	mkdir -p build
 	cd build && $(VITIS) --mode hls --tcl $(abspath synthesize_reset_all.tcl)
-	mkdir -p rtl-ok
-	cp build/hls_project_ok/solution/syn/verilog/*.v rtl-ok/
+	mkdir -p rtl
+	cp build/hls_project_ok/solution/syn/verilog/*.v rtl/
 
 clean:
 	rm -rf -- build
