@@ -153,6 +153,26 @@ the committed files. Tool executable paths can be overridden, for example
 `make hls VITIS=/path/to/vitis-run`; the simulator executables can be
 overridden with `XVLOG`, `XELAB`, and `XSIM` in the same way.
 
+## Workaround: `config_rtl -reset all`
+
+`synthesize_reset_all.tcl` is the same script with one added line,
+`config_rtl -reset all`, which gives every register a reset.
+`make hls-ok` synthesizes it into `rtl-ok/`. Rerunning the failing case
+against that RTL shows the bug is gone — the hostile power-up value is
+cleared by reset and the kernel completes normally:
+
+```sh
+make hls-ok
+make test-bug RTL_DIR=rtl-ok BUILD=build/replay-ok
+```
+
+```text
+ap_done at cycle 2057
+a[0..7] = 5 5 5 5 5 5 5 5
+```
+
+The cost is that the datapath now resets too, adding area and reset fanout.
+
 To remove generated HLS, simulation, and solver output under `build/`:
 
 ```sh
@@ -167,6 +187,7 @@ The source, supplied RTL snapshot, and recorded files in `evidence/` are retaine
 | --- | --- |
 | `source/array_madd.c` | Original C source and ACSL annotations |
 | `synthesize.tcl` | Standalone Vitis HLS script |
+| `synthesize_reset_all.tcl` | Same script plus `config_rtl -reset all`; used by `make hls-ok` |
 | `rtl/` | Three HLS-generated Verilog modules; regenerate with `make hls` |
 | `tb_startup.sv` | Concrete failing simulation and zero-seed control |
 | `startup_check.sv`, `startup.sby` | Independent startup assertion and BMC task |

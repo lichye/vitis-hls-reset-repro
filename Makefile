@@ -9,7 +9,7 @@ VVP ?= vvp
 SBY ?= sby
 VITIS ?= vitis-run
 
-.PHONY: test test-bug test-ok test-iverilog bmc hls clean
+.PHONY: test test-bug test-ok test-iverilog bmc hls hls-ok clean
 
 test: test-bug test-ok
 
@@ -45,6 +45,14 @@ hls:
 	cd build && $(VITIS) --mode hls --tcl $(abspath synthesize.tcl)
 	mkdir -p rtl
 	cp build/hls_project/solution/syn/verilog/*.v rtl/
+
+# Same synthesis with config_rtl -reset all; RTL goes to rtl-ok/.
+# Then: make test-bug RTL_DIR=rtl-ok BUILD=build/replay-ok
+hls-ok:
+	mkdir -p build
+	cd build && $(VITIS) --mode hls --tcl $(abspath synthesize_reset_all.tcl)
+	mkdir -p rtl-ok
+	cp build/hls_project_ok/solution/syn/verilog/*.v rtl-ok/
 
 clean:
 	rm -rf -- build
